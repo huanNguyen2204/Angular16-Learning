@@ -1,0 +1,45 @@
+<p>{{ title }}</p>
+<span [innerText]="title"></span>
+<p [innerText]="'My title'"></p>
+<p class="star"></p>
+<p style="color: greenyellow" [innerText]="'something'"></p>
+<!-- <p [class.star]="isLiked"></p> -->
+<p [class]="currentClasses">ok</p>
+<p [style.color]="'greenyellow'">more something</p>
+<p [style.width.px]="100">ok</p>
+<p class="someclass">ok</p>
+<p [style]="currentStyle">hihi</p>
+<button (click)="onClick()">Click me</button>
+
+<hr />
+<h2>Product List</h2>
+<ul>
+  <li *ngFor="let product of products" (click)="selectedProduct=product">
+    {{ product.name | uppercase }}
+    <span><strong>{{ product.price | currency: "EUR" }}</strong></span>
+    <p>{{ product | json }}</p>
+  </li>
+</ul>
+
+<p>{{ today | date }}</p>
+<p appCopyright>ok</p>
+
+<h3>Offers</h3>
+
+<app-product-detail 
+  *ngIf="selectedProduct"
+  [product]="selectedProduct"
+  (bought)="onBuy($event)"
+></app-product-detail>
+
+<p *ngIf="!selectedProduct">No product selected!</p>
+
+<input appNumeric />
+
+<div *appPermission="['admin', 'agent']"></div>
+
+<ng-template #noProduct>
+  <p>No product selected!</p>
+</ng-template>
+
+<ng-template appProductHost></ng-template>
